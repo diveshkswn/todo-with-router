@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Text, Center,
   Select,
@@ -7,6 +7,7 @@ import {
 import { TodoList } from './TodoList';
 
 export function Homepage() {
+  const [appliedFilter, setAppliedFilter] = useState('All');
   return (
     <div className="homepage-main-container">
       <Container height="100vh" minWidth="100vw" backgroundColor="whitesmoke">
@@ -20,14 +21,14 @@ export function Homepage() {
             maxWidth="250px"
             marginLeft="23vw"
             onChange={(e) => {
-              console.log(e.target.value);
+              setAppliedFilter(e.target.value);
             }}
           >
-            <option value="option1">Completed</option>
-            <option value="option2">Un completed</option>
+            <option value="completed">Completed</option>
+            <option value="uncompleted">Un completed</option>
           </Select>
         </Container>
-        <TodoList />
+        <TodoList appliedFilter={appliedFilter} />
       </Container>
     </div>
   );
